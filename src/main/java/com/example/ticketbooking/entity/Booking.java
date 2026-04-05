@@ -12,7 +12,8 @@ import java.time.LocalDateTime;
  */
 @Entity
 @Table(name = "bookings")
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Booking {
@@ -78,9 +79,13 @@ public class Booking {
     @PrePersist
     protected void onCreate() {
         bookingDate = LocalDateTime.now();
-        if (status == null) status = "CONFIRMED";
-        if (seatClass == null) seatClass = "ECONOMY";
-        if (paymentStatus == null) paymentStatus = "UNPAID";
-        if (tripType == null) tripType = "ONE_WAY";
+        if (status == null)
+            status = "CONFIRMED";
+        if (seatClass == null)
+            seatClass = "ECONOMY";
+        if (paymentStatus == null)
+            paymentStatus = "UNPAID";
+        if (tripType == null)
+            tripType = "ONE_WAY";
     }
 }

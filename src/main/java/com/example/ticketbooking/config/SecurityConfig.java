@@ -1,5 +1,4 @@
-package com.example.ticketbooking.config;
-
+packagecom. 
 import com.example.ticketbooking.service.CustomUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -112,3 +111,62 @@ public class SecurityConfig {
         return http.build();
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+  
+ 
+ 
+
+
+
+
+
+
+    
+
+    
+     
+     
+     
+    
+    
+        
+    
+
+    
+     
+     
+    
+    
+        
+        
+        
+        
+    
+
+    
+     
+     
+    
+    
+        
+    
+
+    

@@ -63,8 +63,8 @@ public class BookingController {
      */
     @GetMapping("/confirmation/{id}")
     public String bookingConfirmation(@PathVariable Long id,
-                                       @AuthenticationPrincipal UserDetails currentUser,
-                                       Model model) {
+            @AuthenticationPrincipal UserDetails currentUser,
+            Model model) {
         Booking booking = bookingService.findById(id)
                 .orElseThrow(() -> new RuntimeException("Không tìm thấy booking"));
 
@@ -82,7 +82,7 @@ public class BookingController {
      */
     @GetMapping("/my-bookings")
     public String myBookings(@AuthenticationPrincipal UserDetails currentUser,
-                              Model model) {
+            Model model) {
         List<Booking> bookings = bookingService.getMyBookings(currentUser.getUsername());
         model.addAttribute("bookings", bookings);
         return "booking/my-bookings";
@@ -93,8 +93,8 @@ public class BookingController {
      */
     @PostMapping("/cancel/{id}")
     public String cancelBooking(@PathVariable Long id,
-                                 @AuthenticationPrincipal UserDetails currentUser,
-                                 RedirectAttributes redirectAttributes) {
+            @AuthenticationPrincipal UserDetails currentUser,
+            RedirectAttributes redirectAttributes) {
         try {
             bookingService.cancelBooking(id, currentUser.getUsername());
             redirectAttributes.addFlashAttribute("successMessage", "Đã hủy vé thành công!");
@@ -109,8 +109,8 @@ public class BookingController {
      */
     @GetMapping("/reschedule/{id}")
     public String reschedulePage(@PathVariable Long id,
-                                  @AuthenticationPrincipal UserDetails currentUser,
-                                  Model model) {
+            @AuthenticationPrincipal UserDetails currentUser,
+            Model model) {
         Booking booking = bookingService.findById(id)
                 .orElseThrow(() -> new RuntimeException("Không tìm thấy booking"));
 
@@ -142,16 +142,16 @@ public class BookingController {
      */
     @PostMapping("/reschedule/{id}")
     public String rescheduleBooking(@PathVariable Long id,
-                                     @RequestParam Long newFlightId,
-                                     @AuthenticationPrincipal UserDetails currentUser,
-                                     RedirectAttributes redirectAttributes) {
+            @RequestParam Long newFlightId,
+            @AuthenticationPrincipal UserDetails currentUser,
+            RedirectAttributes redirectAttributes) {
         try {
             Booking updated = bookingService.rescheduleBooking(id, newFlightId, currentUser.getUsername());
 
             BigDecimal oldPrice = updated.getTotalPrice(); // already updated
             redirectAttributes.addFlashAttribute("successMessage",
                     "Đổi chuyến bay thành công! Giá mới: " +
-                    String.format("%,.0f", updated.getTotalPrice()) + " ₫");
+                            String.format("%,.0f", updated.getTotalPrice()) + " ₫");
 
             return "redirect:/bookings/confirmation/" + updated.getId();
         } catch (RuntimeException e) {

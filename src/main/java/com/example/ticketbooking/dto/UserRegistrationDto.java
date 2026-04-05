@@ -7,7 +7,8 @@ import lombok.*;
  * DTO dùng để nhận dữ liệu form đăng ký từ người dùng.
  * Tách biệt với Entity để tránh expose trực tiếp entity ra ngoài.
  */
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserRegistrationDto {

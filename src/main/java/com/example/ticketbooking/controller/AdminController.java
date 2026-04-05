@@ -26,7 +26,7 @@ public class AdminController {
     private final FlightRepository flightRepository;
     private final UserRepository userRepository;
 
-    @GetMapping({"/dashboard", ""})
+    @GetMapping({ "/dashboard", "" })
     public String dashboard(Model model) {
         model.addAttribute("totalFlights", flightRepository.count());
         model.addAttribute("totalBookings", bookingRepository.count());
@@ -35,8 +35,7 @@ public class AdminController {
 
         model.addAttribute("recentBookings",
                 bookingService.findAll(
-                        PageRequest.of(0, 10, Sort.by("bookingDate").descending())
-                ).getContent());
+                        PageRequest.of(0, 10, Sort.by("bookingDate").descending())).getContent());
 
         return "admin/dashboard";
     }
@@ -58,7 +57,7 @@ public class AdminController {
 
     @PostMapping("/bookings/cancel/{id}")
     public String cancelBookingByAdmin(@PathVariable Long id,
-                                        RedirectAttributes redirectAttributes) {
+            RedirectAttributes redirectAttributes) {
         bookingService.findById(id).ifPresent(booking -> {
             booking.setStatus("CANCELLED");
             bookingRepository.save(booking);
@@ -107,14 +106,15 @@ public class AdminController {
 
     /**
      * Ban tài khoản người dùng với thời hạn và lý do.
+     * 
      * @param duration: số ngày ban (0 = vĩnh viễn, 1/7/30 = tạm thời)
-     * @param reason: lý do ban
+     * @param reason:   lý do ban
      */
     @PostMapping("/users/ban/{id}")
     public String banUser(@PathVariable Long id,
-                          @RequestParam(defaultValue = "0") int duration,
-                          @RequestParam(defaultValue = "Vi phạm quy định") String reason,
-                          RedirectAttributes redirectAttributes) {
+            @RequestParam(defaultValue = "0") int duration,
+            @RequestParam(defaultValue = "Vi phạm quy định") String reason,
+            RedirectAttributes redirectAttributes) {
         userRepository.findById(id).ifPresent(user -> {
             user.setEnabled(false);
             user.setBanReason(reason);
@@ -141,8 +141,8 @@ public class AdminController {
      */
     @PostMapping("/users/extend-ban/{id}")
     public String extendBan(@PathVariable Long id,
-                            @RequestParam int extraDays,
-                            RedirectAttributes redirectAttributes) {
+            @RequestParam int extraDays,
+            RedirectAttributes redirectAttributes) {
         userRepository.findById(id).ifPresent(user -> {
             if (!user.isEnabled()) {
                 if (user.getBanExpiry() != null) {
