@@ -12,7 +12,8 @@ import java.time.LocalDateTime;
  */
 @Entity
 @Table(name = "flights")
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Flight {

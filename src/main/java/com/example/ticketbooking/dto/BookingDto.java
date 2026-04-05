@@ -7,7 +7,8 @@ import lombok.*;
  * DTO cho form đặt vé máy bay.
  * Hỗ trợ vé một chiều và khứ hồi.
  */
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class BookingDto {

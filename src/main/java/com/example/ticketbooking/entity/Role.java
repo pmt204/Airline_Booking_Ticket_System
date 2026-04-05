@@ -5,11 +5,13 @@ import lombok.*;
 
 /**
  * Entity đại diện cho vai trò người dùng trong hệ thống.
- * Spring Security yêu cầu tên role bắt đầu bằng "ROLE_" (vd: ROLE_ADMIN, ROLE_USER)
+ * Spring Security yêu cầu tên role bắt đầu bằng "ROLE_" (vd: ROLE_ADMIN,
+ * ROLE_USER)
  */
 @Entity
 @Table(name = "roles")
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Role {

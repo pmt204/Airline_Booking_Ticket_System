@@ -71,7 +71,20 @@ public class SecurityConfig {
                                 "/css/**", "/js/**", "/images/**", "/favicon.ico")
                         .permitAll()
 
-                )
+                        // ===== ADMIN only =====
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+
+                        // ===== Thêm/Sửa/Xóa chuyến bay: chỉ ADMIN =====
+                        .requestMatchers("/flights/add", "/flights/edit/**", "/flights/delete/**").hasRole("ADMIN")
+
+                        // ===== Xem danh sách chuyến bay: cả USER và ADMIN =====
+                        .requestMatchers("/flights/list", "/flights", "/flights/search").hasAnyRole("ADMIN", "USER")
+
+                        // ===== Đặt vé, xem booking, hồ sơ, đổi mật khẩu: USER và ADMIN =====
+                        .requestMatchers("/bookings/**", "/profile", "/profile/**").hasAnyRole("ADMIN", "USER")
+
+                        // ===== Mọi request còn lại cần đăng nhập =====
+                        .anyRequest().authenticated())
                 // ===== Form Login =====
                 .formLogin(form -> form
                         .loginPage("/auth/login") // Trang login tùy chỉnh

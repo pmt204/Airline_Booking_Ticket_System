@@ -46,8 +46,7 @@ public class CustomUserDetailsService implements UserDetailsService {
                 user.getPassword(),
                 user.isEnabled(),
                 true, true, true, // accountNonExpired, credentialsNonExpired, accountNonLocked
-                mapRolesToAuthorities(user.getRoles())
-        );
+                mapRolesToAuthorities(user.getRoles()));
     }
 
     /**

@@ -39,8 +39,9 @@ public class AuthController {
 
     /**
      * Xử lý form đăng ký.
+     * 
      * @Valid kích hoạt Bean Validation trên UserRegistrationDto.
-     * BindingResult chứa các lỗi validation.
+     *        BindingResult chứa các lỗi validation.
      */
     @PostMapping("/register")
     public String register(
@@ -89,10 +90,10 @@ public class AuthController {
      */
     @PostMapping("/forgot-password")
     public String forgotPassword(@RequestParam String username,
-                                 @RequestParam String email,
-                                 @RequestParam String newPassword,
-                                 @RequestParam String confirmPassword,
-                                 RedirectAttributes redirectAttributes) {
+            @RequestParam String email,
+            @RequestParam String newPassword,
+            @RequestParam String confirmPassword,
+            RedirectAttributes redirectAttributes) {
 
         // Kiểm tra mật khẩu mới khớp
         if (!newPassword.equals(confirmPassword)) {
